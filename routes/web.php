@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\RemisionesController;
+use App\Http\Controllers\TasksController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PdfRemisionController;
@@ -39,6 +40,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('remisiones', RemisionesController::class);
     Route::resource('pdf', PdfController::class);
     Route::resource('pdfremision', PdfRemisionController::class);
+    Route::resource('tasks', TasksController::class);
+    Route::get('tasks/completed', [TaskController::class, 'completed']);
+    Route::get('tasks/pending', [TaskController::class, 'pending']);
 });
 
 Route::controller(PostController::class)->group(function(){
